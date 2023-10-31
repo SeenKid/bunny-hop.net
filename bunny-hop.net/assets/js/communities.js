@@ -10,6 +10,11 @@ import { communities } from './db_communities.js';
 
 const communitySection = document.getElementById('communities-section');
 
+const colors = {
+  whitelist: '#dc3545',
+  public: '#198754',
+};
+
 const render = () => {
   communities.map((community) => {
     const { name, gamemode, type, status, owner, discord, img } = community;
@@ -51,6 +56,9 @@ const render = () => {
     statusHeader.textContent = 'Status';
     const statusSpan = document.createElement('span');
     statusSpan.textContent = status;
+    status === 'Public'
+      ? (statusSpan.style.color = colors.public)
+      : (statusSpan.style.color = colors.whitelist);
     statusList.append(statusHeader, statusSpan);
 
     const discordList = document.createElement('li');
